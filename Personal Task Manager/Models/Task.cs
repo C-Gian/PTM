@@ -11,9 +11,13 @@ namespace Personal_Task_Manager.Models
         public int TaskID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Priority { get; set; }
+        public int Priority { get; set; }
         public bool IsCompleted { get; set; }
         public int UserID { get; set; }
 
+        public override string ToString()
+        {
+            return $"ID:[{TaskID}] | {Name}, {Description}, {Priority}, {IsCompleted}";
+        }
     }
 }

@@ -60,12 +60,12 @@ namespace Personal_Task_Manager.Views.LoginForm
             _signupClickEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        private void btn_login_Click(object sender, EventArgs e)
+        private void btn_login_Click_1(object sender, EventArgs e)
         {
             _loginEvent?.Invoke(this, new LoginEventClickArgs(Email, Password));
         }
 
-        private void btn_cancel_Click(object sender, EventArgs e)
+        private void btn_cancel_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -91,7 +91,5 @@ namespace Personal_Task_Manager.Views.LoginForm
         #endregion
 
 
-
-        
     }
 }

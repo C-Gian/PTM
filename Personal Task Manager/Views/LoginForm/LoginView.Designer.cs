@@ -122,6 +122,7 @@
             btn_cancel.TabIndex = 10;
             btn_cancel.Text = "cancel";
             btn_cancel.UseVisualStyleBackColor = false;
+            btn_cancel.Click += btn_cancel_Click_1;
             // 
             // btn_login
             // 
@@ -133,6 +134,7 @@
             btn_login.TabIndex = 9;
             btn_login.Text = "Login";
             btn_login.UseVisualStyleBackColor = true;
+            btn_login.Click += btn_login_Click_1;
             // 
             // tableLayoutPanel1
             // 

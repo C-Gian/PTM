@@ -12,6 +12,8 @@ namespace Personal_Task_Manager.Presenters.TasksPresenter
     {
         public ITasksView _tasksView { get; set; }
 
-        public void LoadTasks(User user);
+        public User User { get; set; }
+
+        public void SetUser(User user);
     }
 }

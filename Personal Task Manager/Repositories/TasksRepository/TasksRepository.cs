@@ -21,6 +21,66 @@ namespace Personal_Task_Manager.Repositories.TasksRepository
             _settings = settings;
         }
 
+        public void AddTask(Task task)
+        {
+            using (SqlConnection conn = new SqlConnection(_settings.Connection))
+            {
+                using (SqlCommand cmd = new SqlCommand("AddTask", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Name", task.Name);
+                    cmd.Parameters.AddWithValue("@Description", task.Description);
+                    cmd.Parameters.AddWithValue("@Priority", task.Priority);
+                    cmd.Parameters.AddWithValue("@IsCompleted", task.IsCompleted);
+                    cmd.Parameters.AddWithValue("@UserID", task.UserID);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+        public void UpdateTask(Task task)
+        {
+            using (SqlConnection conn = new SqlConnection(_settings.Connection))
+            {
+                using (SqlCommand cmd = new SqlCommand("UpdateTask", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@TaskID", task.TaskID);
+                    cmd.Parameters.AddWithValue("@Name", task.Name);
+                    cmd.Parameters.AddWithValue("@Description", task.Description);
+                    cmd.Parameters.AddWithValue("@Priority", task.Priority);
+                    cmd.Parameters.AddWithValue("@IsCompleted", task.IsCompleted);
+                    cmd.Parameters.AddWithValue("@UserID", task.UserID);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+        public void DeleteTask(int TaskID)
+        {
+            using (SqlConnection conn = new SqlConnection(_settings.Connection))
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteTask", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@TaskID", TaskID);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
         public List<Task> GetUserTasks(User user)
         {
             var tasks = new List<Task>();
@@ -36,16 +96,15 @@ namespace Personal_Task_Manager.Repositories.TasksRepository
                 connection.Open();
                 using (var reader = command.ExecuteReader())
                 {
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         tasks.Add(new Task
                         {
                             TaskID = (int)reader["TaskID"],
                             Name = (string)reader["Name"],
                             Description = (string)reader["Description"],
-                            Priority = (string)reader["Priority"],
+                            Priority = (int)reader["Priority"],
                             IsCompleted = (bool)reader["IsCompleted"],
-                            UserID = (int)reader["UserID"],
                         });
                     }
                 }
@@ -53,5 +112,7 @@ namespace Personal_Task_Manager.Repositories.TasksRepository
 
             return tasks;
         }
+
+        
     }
 }

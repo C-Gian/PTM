@@ -44,7 +44,7 @@ namespace Personal_Task_Manager.NavigationManager
             _currentForm?.Hide();
             var tasksPresenter = _serviceProvider.GetRequiredService<ITasksPresenter>();
             _currentForm = (Form)tasksPresenter._tasksView;
-            tasksPresenter.LoadTasks(user);
+            tasksPresenter.SetUser(user);
             _currentForm.Show();
         }
     }
