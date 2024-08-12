@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Personal_Task_Manager.Repositories.UserRepository
 {
-    public interface ILoginRepository
+    public interface IUserRepository
     {
         public User Authenticate(string email, string password);
+        public bool Signup(User user); 
+        public bool CheckEmail(string email); 
     }
 }

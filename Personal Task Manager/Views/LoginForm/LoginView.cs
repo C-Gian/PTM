@@ -20,8 +20,12 @@ namespace Personal_Task_Manager.Views.LoginForm
         public string Password { get => txt_password.Text; set => txt_password.Text = value; }
 
         public event EventHandler<LoginEventClickArgs> _loginEvent;
+        public event EventHandler _signupClickEvent;
 
         #endregion
+
+
+
 
         #region Constructor
         public LoginView()
@@ -31,8 +35,10 @@ namespace Personal_Task_Manager.Views.LoginForm
 
         #endregion
 
-        #region Methods
 
+
+
+        #region Methods
 
         public void ShowError()
         {
@@ -49,9 +55,9 @@ namespace Personal_Task_Manager.Views.LoginForm
             error_label.Visible = false;
         }
 
-        private void link_forgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void signup_label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            _signupClickEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -61,12 +67,13 @@ namespace Personal_Task_Manager.Views.LoginForm
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-
-
         #endregion
+
+
+
 
         #region Events
 
@@ -82,6 +89,7 @@ namespace Personal_Task_Manager.Views.LoginForm
         }
 
         #endregion
+
 
 
         

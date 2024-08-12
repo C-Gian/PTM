@@ -1,12 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic.ApplicationServices;
 using Personal_Task_Manager.Models;
 using Personal_Task_Manager.Presenters.LoginPresenter;
+using Personal_Task_Manager.Presenters.SignupPresenter;
 using Personal_Task_Manager.Presenters.TasksPresenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using User = Personal_Task_Manager.Models.User;
 
 namespace Personal_Task_Manager.NavigationManager
 {
@@ -20,15 +23,6 @@ namespace Personal_Task_Manager.NavigationManager
             _serviceProvider = serviceProvider;
         }
 
-        public void ShowTasksView(User user)
-        {
-            _currentForm?.Hide();
-            var tasksPresenter = _serviceProvider.GetRequiredService<ITasksPresenter>();
-            tasksPresenter.LoadTasks(user);
-            _currentForm = (Form)tasksPresenter._tasksView;
-            _currentForm.Show();
-        }
-
         public void ShowLoginView()
         {
             _currentForm?.Hide();
@@ -37,11 +31,20 @@ namespace Personal_Task_Manager.NavigationManager
             _currentForm.Show();
         }
 
-        public void ShowRegisterView()
+        public void ShowSignupView()
         {
             _currentForm?.Hide();
-            var loginPresenter = _serviceProvider.GetRequiredService<ILoginPresenter>();
-            _currentForm = (Form)loginPresenter._loginView;
+            var signupPresenter = _serviceProvider.GetRequiredService<ISignupPresenter>();
+            _currentForm = (Form)signupPresenter._signupView;
+            _currentForm.Show();
+        }
+
+        public void ShowTasksView(User user)
+        {
+            _currentForm?.Hide();
+            var tasksPresenter = _serviceProvider.GetRequiredService<ITasksPresenter>();
+            _currentForm = (Form)tasksPresenter._tasksView;
+            tasksPresenter.LoadTasks(user);
             _currentForm.Show();
         }
     }

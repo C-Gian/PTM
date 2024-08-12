@@ -17,7 +17,7 @@ namespace Personal_Task_Manager.Presenters.LoginPresenter
         #region Field & Properties
 
         public ILoginView _loginView { get; set; }
-        private readonly ILoginRepository _loginRepository;
+        private readonly IUserRepository _loginRepository;
         private readonly INavigationManager _navigationManager;
 
         #endregion
@@ -26,22 +26,26 @@ namespace Personal_Task_Manager.Presenters.LoginPresenter
 
         #region Constructor
 
-        public LoginPresenter(ILoginView loginView, ILoginRepository loginRepository, INavigationManager navigationManager)
+        public LoginPresenter(ILoginView loginView, IUserRepository loginRepository, INavigationManager navigationManager)
         {
             _loginView = loginView;
             _loginRepository = loginRepository;
             _navigationManager = navigationManager;
             _loginView._loginEvent += OnLogin;
+            _loginView._signupClickEvent += OnSignupClick;
 
         }
-
-        
 
         #endregion
 
 
 
         #region Methods
+
+        private void OnSignupClick(object? sender, EventArgs e)
+        {
+            _navigationManager.ShowSignupView();
+        }
 
         private void OnLogin(object? sender, LoginEventClickArgs e)
         {

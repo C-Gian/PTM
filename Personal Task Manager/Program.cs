@@ -3,10 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Personal_Task_Manager.Configuration;
 using Personal_Task_Manager.NavigationManager;
 using Personal_Task_Manager.Presenters.LoginPresenter;
+using Personal_Task_Manager.Presenters.SignupPresenter;
 using Personal_Task_Manager.Presenters.TasksPresenter;
 using Personal_Task_Manager.Repositories.TasksRepository;
 using Personal_Task_Manager.Repositories.UserRepository;
 using Personal_Task_Manager.Views.LoginForm;
+using Personal_Task_Manager.Views.SignupForm;
 using Personal_Task_Manager.Views.TasksForm;
 
 namespace Personal_Task_Manager
@@ -26,18 +28,20 @@ namespace Personal_Task_Manager
             var serviceCollection = new ServiceCollection();
 
             //Repositories
-            serviceCollection.AddSingleton<ILoginRepository, LoginRepository>();
+            serviceCollection.AddSingleton<IUserRepository, UserRepository>();
             serviceCollection.AddSingleton<ITasksRepository, TasksRepository>();
 
             //Views
             serviceCollection.AddSingleton<ILoginView, LoginView>();
             serviceCollection.AddSingleton<ITasksView, TasksView>();
+            serviceCollection.AddSingleton<ISignupView, SignupView>();
 
             //Presenters
             serviceCollection.AddSingleton<ILoginPresenter, LoginPresenter>();
             serviceCollection.AddSingleton<ITasksPresenter, TasksPresenter>();
+            serviceCollection.AddSingleton<ISignupPresenter, SignupPresenter>();
 
-            
+
             //Navigation Manager
             serviceCollection.AddSingleton<INavigationManager, NavigationManager.NavigationManager>();
 
