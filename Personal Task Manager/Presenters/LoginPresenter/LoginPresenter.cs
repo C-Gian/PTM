@@ -1,4 +1,5 @@
-﻿using Personal_Task_Manager.Presenters.TasksPresenter;
+﻿using Personal_Task_Manager.NavigationManager;
+using Personal_Task_Manager.Presenters.TasksPresenter;
 using Personal_Task_Manager.Repositories.UserRepository;
 using Personal_Task_Manager.Views.LoginForm;
 using System;
@@ -16,8 +17,8 @@ namespace Personal_Task_Manager.Presenters.LoginPresenter
         #region Field & Properties
 
         public ILoginView _loginView { get; set; }
-        private readonly ILoginRepository _userRepository;
-        private readonly ITasksPresenter _tasksPresenter;
+        private readonly ILoginRepository _loginRepository;
+        private readonly INavigationManager _navigationManager;
 
         #endregion
 
@@ -25,13 +26,13 @@ namespace Personal_Task_Manager.Presenters.LoginPresenter
 
         #region Constructor
 
-        public LoginPresenter(ILoginView loginView, ILoginRepository userRepository, ITasksPresenter tasksPresenter)
+        public LoginPresenter(ILoginView loginView, ILoginRepository loginRepository, INavigationManager navigationManager)
         {
             _loginView = loginView;
-            _userRepository = userRepository;
-            _tasksPresenter = tasksPresenter;
+            _loginRepository = loginRepository;
+            _navigationManager = navigationManager;
+            _loginView._loginEvent += OnLogin;
 
-            _loginView._login += OnLoginRequested;
         }
 
         
@@ -42,27 +43,17 @@ namespace Personal_Task_Manager.Presenters.LoginPresenter
 
         #region Methods
 
-        private void OnLoginRequested(object? sender, LoginEventClickArgs e)
+        private void OnLogin(object? sender, LoginEventClickArgs e)
         {
-            var user = _userRepository.Authenticate(e.Email, e.Password);
+            var user = _loginRepository.Authenticate(_loginView.Email, _loginView.Password);
             if (user != null)
             {
-                _loginView.Hide();
-                _tasksPresenter.Show(); 
-            } else
+                _navigationManager.ShowTasksView(user);
+            }
+            else
             {
                 _loginView.ShowError();
             }
-        }
-
-        public void Hide()
-        {
-            _loginView?.Hide();
-        }
-
-        public void Show()
-        {
-            _loginView?.Show();
         }
 
 

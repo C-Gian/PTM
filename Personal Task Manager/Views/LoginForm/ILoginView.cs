@@ -16,6 +16,6 @@ namespace Personal_Task_Manager.Views.LoginForm
         public void Hide();
         public void ShowError();
 
-        public event EventHandler<LoginEventClickArgs> _login;
+        public event EventHandler<LoginEventClickArgs> _loginEvent;
     }
 }

@@ -1,4 +1,6 @@
-﻿using Personal_Task_Manager.Repositories.UserRepository;
+﻿using Personal_Task_Manager.Models;
+using Personal_Task_Manager.Repositories.TasksRepository;
+using Personal_Task_Manager.Repositories.UserRepository;
 using Personal_Task_Manager.Views.TasksForm;
 using System;
 using System.Collections.Generic;
@@ -10,27 +12,23 @@ namespace Personal_Task_Manager.Presenters.TasksPresenter
 {
     public class TasksPresenter : ITasksPresenter
     {
-        private readonly ITasksView _tasksview;
-        private readonly ILoginRepository _loginRepository;
+        public ITasksView _tasksView { get; set; }
 
-        public TasksPresenter(ITasksView tasksview, ILoginRepository loginRepository)
+        private readonly ITasksRepository _tasksRepository;
+
+        public TasksPresenter(ITasksView tasksView, ITasksRepository tasksRepository)
         {
-            _tasksview = tasksview;
-            _loginRepository = loginRepository;
-
-            //_tasksview.Load += OnViewLoaded;
+            _tasksView = tasksView;
+            _tasksRepository = tasksRepository;
         }
+
+
 
         #region Methods
 
-        public void Hide()
+        public void LoadTasks(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Show()
-        {
-            _tasksview.Show();
+            _tasksRepository.GetUserTasks(user);
         }
 
         #endregion

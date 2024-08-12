@@ -9,8 +9,7 @@ namespace Personal_Task_Manager.Presenters.LoginPresenter
 {
     public interface ILoginPresenter
     {
-        public ILoginView _loginView {  get; set; }
-        public void Show();
-        public void Hide();
+        public ILoginView _loginView { get; set; }
+        
     }
 }

@@ -19,7 +19,7 @@ namespace Personal_Task_Manager.Views.LoginForm
         public string Email { get => txt_email.Text; set => txt_email.Text = value; }
         public string Password { get => txt_password.Text; set => txt_password.Text = value; }
 
-        public event EventHandler<LoginEventClickArgs> _login;
+        public event EventHandler<LoginEventClickArgs> _loginEvent;
 
         #endregion
 
@@ -33,15 +33,6 @@ namespace Personal_Task_Manager.Views.LoginForm
 
         #region Methods
 
-        public void Show()
-        {
-            this.Show();
-        }
-
-        public void Hide()
-        {
-            this.Hide();
-        }
 
         public void ShowError()
         {
@@ -65,10 +56,7 @@ namespace Personal_Task_Manager.Views.LoginForm
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            if (_login != null)
-            {
-                _login?.Invoke(this, new LoginEventClickArgs(Email, Password));
-            }
+            _loginEvent?.Invoke(this, new LoginEventClickArgs(Email, Password));
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)

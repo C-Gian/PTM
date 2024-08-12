@@ -8,11 +8,12 @@ namespace Personal_Task_Manager.Models
 {
     public class Task
     {
-        public int Id { get; set; }
+        public int TaskID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        string Priority { get; set; }
-        bool IsCompleted { get; set; }
+        public string Priority { get; set; }
+        public bool IsCompleted { get; set; }
+        public int UserID { get; set; }
 
     }
 }

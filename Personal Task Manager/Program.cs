@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Personal_Task_Manager.Configuration;
+using Personal_Task_Manager.NavigationManager;
 using Personal_Task_Manager.Presenters.LoginPresenter;
 using Personal_Task_Manager.Presenters.TasksPresenter;
 using Personal_Task_Manager.Repositories.TasksRepository;
@@ -36,6 +37,10 @@ namespace Personal_Task_Manager
             serviceCollection.AddSingleton<ILoginPresenter, LoginPresenter>();
             serviceCollection.AddSingleton<ITasksPresenter, TasksPresenter>();
 
+            
+            //Navigation Manager
+            serviceCollection.AddSingleton<INavigationManager, NavigationManager.NavigationManager>();
+
             var builder = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile(Path.Combine("Configuration", "appsettings.json"), optional: false, reloadOnChange: true);
@@ -45,11 +50,14 @@ namespace Personal_Task_Manager
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
+            var navigationManager = serviceProvider.GetRequiredService<INavigationManager>();
+            navigationManager.ShowLoginView();
 
+            Application.Run(navigationManager._currentForm);
 
-            var presenter = serviceProvider.GetRequiredService<ILoginPresenter>();
+            //var presenter = serviceProvider.GetRequiredService<ILoginPresenter>();
                 
-            Application.Run((Form)presenter._loginView);
+            //Application.Run((Form)presenter._loginView);
         }
     }
 }
