@@ -1,13 +1,13 @@
 # Personal Task Manager
 
-An efficient and intuitive desktop application to manage your personal tasks, built with Windows Forms, MVP pattern, and Dependency Injection.
+Desktop application to manage personal tasks, built with Windows Forms, MVP pattern, and Dependency Injection.
 
-![Screen](./Assets/screen.png)
+![Screen](./Assets/screen.PNG)
 
 ## Features
 
-- User authentication
-- Task creation, modification, and deletion
+- User authentication (signup and login)
+- Task CRUD (creation, modification, and deletion)
 - User-specific task management
 - Clean and modular architecture
 
