@@ -244,6 +244,7 @@
             pictureBox1.Size = new Size(91, 94);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panel1
             // 
@@ -258,10 +259,11 @@
             // tasks_email_label
             // 
             tasks_email_label.AutoSize = true;
-            tasks_email_label.Font = new Font("Segoe UI", 15.75F);
+            tasks_email_label.Font = new Font("Segoe UI", 15.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            tasks_email_label.ForeColor = Color.DimGray;
             tasks_email_label.Location = new Point(3, 48);
             tasks_email_label.Name = "tasks_email_label";
-            tasks_email_label.Size = new Size(68, 30);
+            tasks_email_label.Size = new Size(66, 30);
             tasks_email_label.TabIndex = 3;
             tasks_email_label.Text = "label3";
             // 
@@ -282,20 +284,20 @@
             // tasks_lname_label
             // 
             tasks_lname_label.AutoSize = true;
-            tasks_lname_label.Font = new Font("Segoe UI", 15.75F);
-            tasks_lname_label.Location = new Point(120, 0);
+            tasks_lname_label.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tasks_lname_label.Location = new Point(150, 0);
             tasks_lname_label.Name = "tasks_lname_label";
-            tasks_lname_label.Size = new Size(108, 30);
+            tasks_lname_label.Size = new Size(138, 37);
             tasks_lname_label.TabIndex = 1;
             tasks_lname_label.Text = "lastaname";
             // 
             // tasks_fname_label
             // 
             tasks_fname_label.AutoSize = true;
-            tasks_fname_label.Font = new Font("Segoe UI", 15.75F);
+            tasks_fname_label.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             tasks_fname_label.Location = new Point(3, 0);
             tasks_fname_label.Name = "tasks_fname_label";
-            tasks_fname_label.Size = new Size(111, 30);
+            tasks_fname_label.Size = new Size(141, 37);
             tasks_fname_label.TabIndex = 0;
             tasks_fname_label.Text = "firstaname";
             // 
@@ -309,6 +311,9 @@
             tasks_list.Name = "tasks_list";
             tasks_list.Size = new Size(900, 780);
             tasks_list.TabIndex = 0;
+            tasks_list.DrawItem += tasks_list_DrawItem;
+            tasks_list.SelectedIndexChanged += tasks_list_SelectedIndexChanged;
+            tasks_list.MouseDown += tasks_list_MouseDown;
             // 
             // TasksView
             // 

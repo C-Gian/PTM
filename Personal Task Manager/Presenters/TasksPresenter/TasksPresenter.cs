@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Personal_Task_Manager.Models;
+using Personal_Task_Manager.NavigationManager;
 using Personal_Task_Manager.Repositories.TasksRepository;
 using Personal_Task_Manager.Repositories.UserRepository;
 using Personal_Task_Manager.Views.TasksForm;
@@ -19,22 +20,31 @@ namespace Personal_Task_Manager.Presenters.TasksPresenter
         public User User { get; set; }
 
         private readonly ITasksRepository _tasksRepository;
+        private readonly INavigationManager _navigationManager;
 
-        public TasksPresenter(ITasksView tasksView, ITasksRepository tasksRepository)
+        public TasksPresenter(ITasksView tasksView, ITasksRepository tasksRepository, INavigationManager navigationManager)
         {
             _tasksView = tasksView;
             _tasksRepository = tasksRepository;
-
+            _navigationManager = navigationManager;
             RefreshData();
 
             _tasksView._addTask += OnAddTask_Event;
             _tasksView._updateTask += OnUpdateTask_Event;
             _tasksView._deleteTask += OnDeleteTask_Event;
+
+            _tasksView._logoutClick += OnLogout_Event;
         }
 
 
 
+
         #region Methods
+
+        private void OnLogout_Event(object? sender, EventArgs e)
+        {
+            _navigationManager?.ShowLoginView();
+        }
 
         private void OnDeleteTask_Event(object? sender, DeleteTaskEventClickArgs e)
         {

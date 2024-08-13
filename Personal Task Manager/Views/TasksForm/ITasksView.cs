@@ -18,11 +18,11 @@ namespace Personal_Task_Manager.Views.TasksForm
         public bool IsCompleted { get; set; }
 
         public void SetTasks(List<Task> tasks);
-        public void SetComboPriority();
         public void SetContextData(User user);
 
         public event EventHandler<AddTaskEventClickArgs> _addTask;
         public event EventHandler<UpdateTaskEventClickArgs> _updateTask;
         public event EventHandler<DeleteTaskEventClickArgs> _deleteTask;
+        public event EventHandler _logoutClick;
     }
 }
