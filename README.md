@@ -2,11 +2,7 @@
 
 An efficient and intuitive desktop application to manage your personal tasks, built with Windows Forms, MVP pattern, and Dependency Injection.
 
-![Task Manager Screenshot](path/to/screenshot.png)
-
-## Demo
-
-![Task Manager Demo](path/to/demo.gif)
+![Task Manager Screenshot](./assets/screen.png)
 
 ## Features
 
