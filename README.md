@@ -2,7 +2,7 @@
 
 Desktop application to manage personal tasks, built with Windows Forms, MVP pattern, and Dependency Injection.
 
-![Screen](./Assets/screen.PNG)
+![Model](https://github.com/C-Gian/PTM/blob/master/Personal%20Task%20Manager/Assets/screen.PNG)
 
 ## Features
 
